@@ -25,6 +25,10 @@ pub struct FullArtist {
     )]
     #[serde(default)]
     pub followers: Followers,
+    #[deprecated(
+        since = "0.16.1",
+        note = "Spotify has deprecated this field, and it may not exist in the response."
+    )]
     #[serde(default)]
     pub genres: Vec<String>,
     pub href: String,

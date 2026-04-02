@@ -53,7 +53,6 @@ pub struct FullAlbum {
     pub copyrights: Vec<Copyright>,
     pub external_ids: HashMap<String, String>,
     pub external_urls: HashMap<String, String>,
-    #[serde(default)]
     pub genres: Vec<String>,
     pub href: String,
     pub id: AlbumId<'static>,

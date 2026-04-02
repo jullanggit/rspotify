@@ -1,3 +1,7 @@
+## unreleased
+Bugfixes
+- Fix: FullArtist: deprecate and add default for genres.
+
 ## 0.16.0 (2026.03.22)
 
 **Spotify Web API changes**
