@@ -547,7 +547,10 @@ fn test_full_playlist() {
     );
     assert_eq!(full_playlist.followers.total, 109);
     assert_eq!(full_playlist.items.total, 5);
-    assert_eq!(full_playlist.tracks.total, 5);
+    #[allow(deprecated)]
+    {
+        assert_eq!(full_playlist.tracks.total, 5);
+    }
 }
 
 #[test]
@@ -968,8 +971,11 @@ fn test_full_playlist_accepts_items_field() {
         full_playlist.items.href,
         "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/items?offset=0&limit=100&locale=en-US,en;q%3D0.9"
     );
-    assert_eq!(full_playlist.tracks.total, 5);
-    assert_eq!(full_playlist.tracks.href, full_playlist.items.href);
+    #[allow(deprecated)]
+    {
+        assert_eq!(full_playlist.tracks.total, 5);
+        assert_eq!(full_playlist.tracks.href, full_playlist.items.href);
+    }
 }
 
 #[test]
