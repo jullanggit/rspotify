@@ -112,13 +112,19 @@ struct FullPlaylistShadow {
     pub owner: PublicUser,
     pub public: Option<bool>,
     pub snapshot_id: String,
-    #[serde(alias = "tracks")]
-    pub items: Page<PlaylistItem>,
+    #[serde(default)]
+    pub items: Option<Page<PlaylistItem>>,
+    #[serde(default)]
+    pub tracks: Option<Page<PlaylistItem>>,
 }
 
 #[allow(deprecated)]
 impl From<FullPlaylistShadow> for FullPlaylist {
     fn from(shadow: FullPlaylistShadow) -> Self {
+        let items = shadow
+            .items
+            .or(shadow.tracks)
+            .expect("missing items/tracks");
         Self {
             collaborative: shadow.collaborative,
             description: shadow.description,
@@ -131,8 +137,8 @@ impl From<FullPlaylistShadow> for FullPlaylist {
             owner: shadow.owner,
             public: shadow.public,
             snapshot_id: shadow.snapshot_id,
-            tracks: shadow.items.clone(),
-            items: shadow.items,
+            tracks: items.clone(),
+            items,
         }
     }
 }
